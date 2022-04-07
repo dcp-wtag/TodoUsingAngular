@@ -1,0 +1,6 @@
+.task-container-component {
+  display: flex;
+  margin-top: 34px;
+  flex-wrap: wrap;
+  width: 100%;
+}

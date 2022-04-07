@@ -1,0 +1,28 @@
+.body-container-component {
+  display: flex;
+  flex-direction: column;
+  margin-left: 7%;
+  margin-right: 7%;
+  margin-top: 65px;
+  border: 1px solid black;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+}
+
+#add-task-title {
+  font-weight: 700;
+  font-size: 30px;
+  color: #32394b;
+}
+
+.all-incomplete-complete-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 300px;
+}
