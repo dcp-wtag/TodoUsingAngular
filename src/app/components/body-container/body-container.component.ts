@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AddTaskUiService } from '../../services/add-task-ui.service';
 
 @Component({
   selector: 'app-body-container',
@@ -6,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./body-container.component.css'],
 })
 export class BodyContainerComponent implements OnInit {
-  constructor() {}
+  isShownAddCart: boolean = false;
+
+  constructor(
+    private router: Router,
+    private addTaskUiService: AddTaskUiService
+  ) {}
 
   ngOnInit(): void {}
+
+  onAddButtonPressed() {
+    this.addTaskUiService.toggleAddTask();
+  }
 }

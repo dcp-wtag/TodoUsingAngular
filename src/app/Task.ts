@@ -1,6 +1,6 @@
 export interface Task {
   id: number;
   text: string;
-  createdAt: string;
+  createdAt: Date;
   isDone: boolean;
 }

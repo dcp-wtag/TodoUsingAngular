@@ -1,24 +1,19 @@
 <div class="body-container-component">
   <p id="add-task-title">Add Tasks</p>
   <div class="button-container">
-    <app-custom-button
-      className="create-button"
-      text="+Create"
-    ></app-custom-button>
+    <button class="create-button" (click)="onAddButtonPressed()">
+      +Create
+    </button>
     <div class="all-incomplete-complete-container">
-      <app-custom-button
-        className="custom-button"
-        text="All"
-      ></app-custom-button>
-      <app-custom-button
-        className="custom-button"
-        text="Incomplete"
-      ></app-custom-button>
-      <app-custom-button
-        className="custom-button"
-        text="Complete"
-      ></app-custom-button>
+      <a routerLinkActive="active current" routerLink="./all">
+        <button class="custom-button">All</button>
+      </a>
+      <a routerLinkActive="active current" routerLink="./incomplete"
+        ><button class="custom-button">Incomplete</button></a
+      >
+      <a routerLinkActive="active current" routerLink="./complete">
+        <button class="custom-button">Complete</button></a
+      >
     </div>
   </div>
-  <app-tasks></app-tasks>
 </div>

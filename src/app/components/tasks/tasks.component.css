@@ -4,3 +4,77 @@
   flex-wrap: wrap;
   width: 100%;
 }
+
+#task-title-input {
+  background: #ffffff;
+  border: 3px solid #d1d8ff;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  padding: 5px;
+  height: 80px;
+  resize: none;
+}
+
+.add-task-button {
+  width: 91px;
+  height: 36px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #32394b;
+  border-radius: 5px;
+  background: white;
+  border: 1px solid #d1d8ff;
+  cursor: pointer;
+}
+.add-task-button:hover {
+  background: #e6e0e0;
+}
+
+.delete-task-button {
+  width: 20px;
+  height: 24px;
+  color: #bbbdd0;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.add-button-container {
+  display: flex;
+  width: 35%;
+  justify-content: space-between;
+  align-items: center;
+  height: 35px;
+}
+
+.task-item-component {
+  display: flex;
+  width: calc(90% / 4);
+  height: 163px;
+  margin-bottom: calc(10% / 3);
+  border: 1px solid #dde2ff;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.task-item-cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #ffffff;
+  border-radius: 5px;
+  width: 100%;
+  padding: 5%;
+}
+.task-item-component:not(:nth-child(4n)) {
+  margin-right: calc(10% / 3);
+}
+
+.task-item-component:nth-child(4n) {
+  margin-right: 0px;
+}
