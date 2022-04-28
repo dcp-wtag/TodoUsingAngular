@@ -5,7 +5,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Task } from '../Task';
 
 @Injectable({
@@ -16,9 +16,6 @@ export class HttpInterceptorService implements HttpInterceptor {
     req: HttpRequest<Task[]>,
     next: HttpHandler
   ): Observable<HttpEvent<Task[]>> {
-    return next.handle(req).pipe(
-      tap((evt) => {}),
-      catchError((error) => {})
-    );
+    return next.handle(req);
   }
 }
