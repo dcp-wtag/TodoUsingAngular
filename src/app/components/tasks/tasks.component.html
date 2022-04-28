@@ -1,17 +1,19 @@
-<div class="task-container-component">
+<div class="task-container-component" #taskCount>
   <div *ngIf="showAddTask" class="task-item-component">
-    <div class="task-item-cart">
+    <div [ngStyle]="{ filter: 'blur(' + blur + ')' }" class="task-item-cart">
       <textarea
+        #textArea
         placeholder="Enter your Task..."
         name=""
         id="task-title-input"
         cols="30"
         rows="10"
         [(ngModel)]="text"
+        (keydown.enter)="onAddTask($event)"
       ></textarea>
       <div class="add-button-container">
         <input
-          (click)="onAddTask()"
+          (click)="onAddTask($event)"
           class="add-task-button"
           type="button"
           value="Add Task"
@@ -38,15 +40,26 @@
           </svg>
         </button>
       </div>
+      <img
+        [style.display]="none"
+        class="spinner-img"
+        src="../../../assets/images/spinner.png"
+        alt="spinner"
+      />
     </div>
   </div>
   <app-task-item
     class="task-item-component"
-    *ngFor="let task of tasks"
+    *ngFor="let task of tasks | search: this.keyword:state | customSlice: to"
     [task]="task"
     (onDeleteTask)="deleteTask(task)"
     (onUpdateTask)="onUpdateTask(task)"
     (onCompleteTask)="onCompleteTask(task)"
   >
   </app-task-item>
+</div>
+<div class="load-more-div" *ngIf="isLoadMoreShow">
+  <button class="load-more-button" (click)="loadMore()">
+    {{ buttonName }}
+  </button>
 </div>

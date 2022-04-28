@@ -1,11 +1,20 @@
 .task-item-cart {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 5%;
+}
+
+.task-item-container {
+  height: 100%;
+}
+
+.task-item {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: #ffffff;
-  border-radius: 5px;
-  width: 100%;
-  padding: 5%;
+  height: 100%;
 }
 
 .complete-button,
@@ -52,6 +61,7 @@
   padding: 5px;
   height: 80px;
   resize: none;
+  outline: none;
 }
 
 .add-task-button {
@@ -98,10 +108,21 @@
   border-radius: 5px;
 }
 .spinner-img {
-  display: block;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   animation: rotation 2s infinite linear;
+}
+
+.blur {
+  display: "block";
+  filter: blur(1.5px);
+}
+
+.created-at-p {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #bbbdd0;
 }

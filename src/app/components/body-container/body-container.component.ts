@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AddTaskUiService } from '../../services/add-task-ui.service';
+import { EmptyTaskService } from '../../services/empty-task.service';
 
 @Component({
   selector: 'app-body-container',
@@ -12,12 +13,16 @@ export class BodyContainerComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private addTaskUiService: AddTaskUiService
+    private addTaskUiService: AddTaskUiService,
+    private emptyTaskService: EmptyTaskService
   ) {}
 
   ngOnInit(): void {}
 
-  onAddButtonPressed() {
+  onCreateButtonPressed() {
+    if (this.emptyTaskService.emptyTaskShow) {
+      this.emptyTaskService.emptyTaskSubject.next(false);
+    }
     this.addTaskUiService.toggleAddTask();
   }
 }

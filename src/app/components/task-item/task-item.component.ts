@@ -20,36 +20,45 @@ export class TaskItemComponent implements AfterViewInit {
   @Output() onUpdateTask: EventEmitter<Task> = new EventEmitter();
   @Output() onCompleteTask: EventEmitter<Task> = new EventEmitter();
 
-  @ViewChild('myTextArea') textArea!: ElementRef;
+  @ViewChild('cart') cartElement!: ElementRef;
+
+  @ViewChild('myTextArea') set myTextArea(ref: ElementRef) {
+    if (!!ref) {
+      ref.nativeElement.setSelectionRange(
+        ref.nativeElement.value.length,
+        ref.nativeElement.value.length
+      );
+      ref.nativeElement.focus();
+    }
+  }
+
+  disp: string = 'none';
+  val: any = 0;
 
   isEditing: boolean = false;
 
   constructor() {}
 
-  ngAfterViewInit(): void {
-    console.log(this.textArea);
-  }
+  ngAfterViewInit(): void {}
 
   onDelete(task: Task) {
-    this.onDeleteTask.emit(task);
+    this.spinnerFunction(this.onDeleteTask, task);
   }
 
   onEdit(task: Task) {
     this.isEditing = true;
-
-    // this.onUpdateTask.emit(task);
   }
 
   onSaveEditedTask(task: Task, text: string) {
     if (text && task.text != text) {
       task.text = text;
-      this.onUpdateTask.emit(task);
+      this.spinnerFunction(this.onUpdateTask, task);
     }
     this.isEditing = false;
   }
 
   onComplete(task: Task) {
-    this.onCompleteTask.emit(task);
+    this.spinnerFunction(this.onCompleteTask, task);
   }
 
   onCompleteFromAddTask(task: Task, text: string) {
@@ -57,7 +66,17 @@ export class TaskItemComponent implements AfterViewInit {
       task.text = text;
       this.onUpdateTask.emit(task);
     }
-    this.onCompleteTask.emit(task);
+    this.onComplete(task);
     this.isEditing = false;
+  }
+
+  spinnerFunction(callBack: any, task: Task): void {
+    this.disp = 'block';
+    this.val = '1.5px';
+    setTimeout(() => {
+      callBack.emit(task);
+      this.disp = 'none';
+      this.val = 0;
+    }, 500);
   }
 }

@@ -16,6 +16,7 @@
   padding: 5px;
   height: 80px;
   resize: none;
+  outline: none;
 }
 
 .add-task-button {
@@ -63,6 +64,7 @@
 }
 
 .task-item-cart {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -77,4 +79,32 @@
 
 .task-item-component:nth-child(4n) {
   margin-right: 0px;
+}
+
+.spinner-img {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotation 2s infinite linear;
+}
+
+.load-more-button,
+.show-less-button {
+  height: 36px;
+  width: 117px;
+  color: white;
+  background: #32394b;
+  border: 1px solid #dde2ff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.load-more-div,
+.show-less-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }

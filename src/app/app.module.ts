@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,6 +12,10 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { ShowTasksComponent } from './components/show-tasks/show-tasks.component';
 import { TaskItemComponent } from './components/task-item/task-item.component';
 import { TasksComponent } from './components/tasks/tasks.component';
+import { CustomSlicePipe } from './pipes/custom-slice.pipe';
+import { SearchPipe } from './pipes/search.pipe';
+import { HttpInterceptorService } from './services/http-interceptor.service';
+import { TaskService } from './services/task.service';
 
 @NgModule({
   declarations: [
@@ -24,9 +28,19 @@ import { TasksComponent } from './components/tasks/tasks.component';
     TasksComponent,
     TaskItemComponent,
     ShowTasksComponent,
+    SearchPipe,
+    CustomSlicePipe,
   ],
   imports: [FormsModule, BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [],
+  providers: [
+    SearchPipe,
+    TaskService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

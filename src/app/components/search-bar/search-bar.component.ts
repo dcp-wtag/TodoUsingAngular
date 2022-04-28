@@ -7,7 +7,7 @@ import { KeywordService } from '../../services/keyword.service';
   styleUrls: ['./search-bar.component.css'],
 })
 export class SearchBarComponent implements OnInit {
-  keyword!: string;
+  keyword: string = '';
   isPressed: boolean = false;
 
   constructor(private keywordService: KeywordService) {}
@@ -20,5 +20,9 @@ export class SearchBarComponent implements OnInit {
 
   onPress(): void {
     this.isPressed = !this.isPressed;
+    if (!this.isPressed) {
+      this.keyword = '';
+      this.keywordPressed();
+    }
   }
 }

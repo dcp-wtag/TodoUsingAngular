@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class KeywordService {
-  keyword: string = '';
-  subject = new Subject<string>();
+export class LoadMoreService {
+  subject = new Subject<boolean>();
+  buttonName = new Subject<string>();
 }
