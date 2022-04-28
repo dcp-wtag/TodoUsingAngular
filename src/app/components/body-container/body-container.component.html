@@ -1,0 +1,31 @@
+<div class="body-container-component">
+  <p id="add-task-title">Add Tasks</p>
+  <div class="button-container">
+    <button class="create-button" (click)="onCreateButtonPressed()">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M16 6.66667H9.33333V0H6.66667V6.66667H0V9.33333H6.66667V16H9.33333V9.33333H16V6.66667Z"
+          fill="white"
+        />
+      </svg>
+      Create
+    </button>
+    <div class="all-incomplete-complete-container">
+      <a routerLinkActive="active current" routerLink="./all">
+        <button class="custom-button">All</button>
+      </a>
+      <a routerLinkActive="active current" routerLink="./incomplete"
+        ><button class="custom-button">Incomplete</button></a
+      >
+      <a routerLinkActive="active current" routerLink="./complete">
+        <button class="custom-button">Complete</button></a
+      >
+    </div>
+  </div>
+</div>
