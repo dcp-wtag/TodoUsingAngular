@@ -1,0 +1,63 @@
+.body-container-component {
+  display: flex;
+  flex-direction: column;
+  margin-left: 7%;
+  margin-right: 7%;
+  margin-top: 65px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+}
+
+#add-task-title {
+  font-weight: 700;
+  font-size: 30px;
+  color: #32394b;
+}
+
+.all-incomplete-complete-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 300px;
+}
+
+.custom-button {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 5px;
+  background: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  border: 1px solid #dde2ff;
+  cursor: pointer;
+}
+
+.custom-button:hover {
+  background: #e6e0e0;
+}
+
+.create-button {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background: #7a8dfd;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+.create-button:hover {
+  background: #4f66e9;
+}

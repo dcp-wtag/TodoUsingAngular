@@ -1,0 +1,65 @@
+#preloader {
+  background: #f8f9ff url("../assets/images/splash.png") no-repeat center center;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 10000;
+}
+
+.main-spinner-img {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotation 2s infinite linear;
+}
+
+#main-spinner {
+  width: 100%;
+  height: 100%;
+}
+
+#toast {
+  width: 390px;
+  height: 55px;
+  border-radius: 5px;
+  background: #0bc475;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 120px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s; */
+  animation: fadein 1s;
+}
+
+.tick-toast {
+  width: 12px;
+  height: 9.5px;
+}
+
+#tick-text {
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 700;
+  color: white;
+}
+
+#toast-unsuccess {
+  width: 364px;
+  height: 55px;
+  border-radius: 5px;
+  background: #e85f5f;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 120px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s; */
+  animation: fadein 1s;
+}
