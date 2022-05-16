@@ -17,15 +17,35 @@
       Create
     </button>
     <div class="all-incomplete-complete-container">
-      <a routerLinkActive="active current" routerLink="./all">
-        <button class="custom-button">All</button>
+      <a routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <button
+          #allButton
+          (click)="onFilterButtonPressed('all')"
+          class="custom-button"
+        >
+          All
+        </button>
       </a>
-      <a routerLinkActive="active current" routerLink="./incomplete"
-        ><button class="custom-button">Incomplete</button></a
+
+      <button
+        #incompleteButton
+        (click)="onFilterButtonPressed('incomplete')"
+        class="custom-button"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
-      <a routerLinkActive="active current" routerLink="./complete">
-        <button class="custom-button">Complete</button></a
+        Incomplete
+      </button>
+
+      <button
+        #completeButton
+        (click)="onFilterButtonPressed('complete')"
+        class="custom-button"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
+        Complete
+      </button>
     </div>
   </div>
 </div>

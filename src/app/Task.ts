@@ -3,4 +3,5 @@ export interface Task {
   text: string;
   createdAt: Date;
   isDone: boolean;
+  completedTimeText: string;
 }

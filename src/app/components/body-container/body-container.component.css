@@ -1,22 +1,21 @@
 .body-container-component {
   display: flex;
   flex-direction: column;
-  margin-left: 7%;
-  margin-right: 7%;
-  margin-top: 65px;
-}
-
-.button-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 28px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 35px;
 }
 
 #add-task-title {
   font-weight: 700;
   font-size: 30px;
   color: #32394b;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 28px;
 }
 
 .all-incomplete-complete-container {
@@ -60,4 +59,33 @@
 }
 .create-button:hover {
   background: #4f66e9;
+}
+
+.active {
+  background: #dde2ff;
+}
+
+@media only screen and (max-width: 426px) {
+  .button-container {
+    display: block;
+  }
+
+  .all-incomplete-complete-container {
+    margin-top: 10px;
+    width: 280px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .custom-button {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .all-incomplete-complete-container {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 260px;
+  }
 }

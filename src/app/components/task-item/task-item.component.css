@@ -3,7 +3,7 @@
   width: 100%;
   background: #ffffff;
   border-radius: 5px;
-  padding: 5%;
+  padding: 15px;
 }
 
 .task-item-container {
@@ -28,7 +28,14 @@
 
 .task-button-container {
   display: flex;
-  width: 35%;
+  width: 100px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.complete-task-button-container {
+  display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
 }
@@ -125,4 +132,21 @@
   font-size: 14px;
   line-height: 17px;
   color: #bbbdd0;
+}
+
+.completed-time-text {
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  padding: 5px;
+}
+
+.completed-time-text-container {
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background: #7a8dfd;
 }

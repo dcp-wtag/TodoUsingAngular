@@ -1,13 +1,16 @@
 <div *ngIf="isSplash" id="preloader"></div>
+<div *ngIf="isSuccess" id="toast">
+  <img class="tick-toast" src="../assets/images/tick_mark.svg" alt="" />
+  <p id="tick-text">{{ successText }}</p>
+</div>
+<div *ngIf="isError" id="toast-unsuccess">
+  <p id="tick-text">{{ errorText }}</p>
+</div>
+<app-header class="header-container-div"></app-header>
+<div [class.hi]="isLoading">
+  <app-body-container></app-body-container>
+  <router-outlet *ngIf="!isSplash"></router-outlet>
+</div>
 <div *ngIf="isLoading" id="main-spinner">
   <img class="main-spinner-img" src="../assets/images/spinner.png" alt="" />
 </div>
-<div *ngIf="isSuccess" id="toast">
-  <img class="tick-toast" src="./icons/Vector (9).png" alt="" />
-  <p id="tick-text">Changes are saved Successfully</p>
-</div>
-<div *ngIf="isError" id="toast-unsuccess">
-  <p id="tick-text">We couldn't save your changes</p>
-</div>
-<app-header></app-header> <app-body-container></app-body-container>
-<router-outlet *ngIf="!isSplash"></router-outlet>

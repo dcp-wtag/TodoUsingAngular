@@ -48,18 +48,23 @@
       />
     </div>
   </div>
+
   <app-task-item
     class="task-item-component"
-    *ngFor="let task of tasks | search: this.keyword:state | customSlice: to"
+    *ngFor="
+      let task of tasks | search: this.keyword:state | customSlice: from:to
+    "
     [task]="task"
-    (onDeleteTask)="deleteTask(task)"
-    (onUpdateTask)="onUpdateTask(task)"
-    (onCompleteTask)="onCompleteTask(task)"
+    (onDeleteTask)="deleteTask($event)"
+    (onUpdateTask)="onUpdateTask($event)"
+    (onCompleteTask)="onCompleteTask($event)"
   >
   </app-task-item>
 </div>
 <div class="load-more-div" *ngIf="isLoadMoreShow">
+  <!-- <button class="load-more-button" (click)="onPrev()">Prev</button> -->
   <button class="load-more-button" (click)="loadMore()">
     {{ buttonName }}
   </button>
+  <!-- <button class="load-more-button" (click)="onNext()">Next</button> -->
 </div>

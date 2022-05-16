@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { AddTaskUiService } from 'src/app/services/add-task-ui.service';
 import { EmptyTaskService } from 'src/app/services/empty-task.service';
+import { ErrorSuccessSpinnerService } from 'src/app/services/error-success-spinner.service';
 import { KeywordService } from 'src/app/services/keyword.service';
 import { LoadMoreService } from 'src/app/services/load-more.service';
 import { Task } from 'src/app/Task';
@@ -14,6 +15,7 @@ import { TaskService } from '../../services/task.service';
 export class TasksComponent implements OnInit {
   @Input() state!: string;
   @ViewChild('taskCount') taskCount!: ElementRef;
+  @ViewChild('task-item-component') scrollToBottom!: ElementRef;
 
   @ViewChild('textArea') set myTextArea(ref: ElementRef) {
     if (!!ref) {
@@ -28,6 +30,7 @@ export class TasksComponent implements OnInit {
   isDone: boolean = false;
   subtasks: Task[] = [];
   keyword: string = this.keywordService.keyword;
+  from: number = 0;
   to: number = 12;
   none: string = 'none';
   blur: any = 0;
@@ -39,7 +42,8 @@ export class TasksComponent implements OnInit {
     private addTaskUiService: AddTaskUiService,
     private keywordService: KeywordService,
     private loadMoreService: LoadMoreService,
-    private emptyTaskService: EmptyTaskService
+    private emptyTaskService: EmptyTaskService,
+    private errorSuccessSpinner: ErrorSuccessSpinnerService
   ) {
     this.addTaskUiService.onToggle().subscribe((val) => {
       if (val && this.taskCount.nativeElement.childElementCount == 12) {
@@ -51,14 +55,9 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe(
-      (tasks) => {
-        this.tasks = tasks.reverse();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.taskService
+      .getTasks()
+      .subscribe((tasks) => (this.tasks = tasks.reverse()));
 
     this.keywordService.subject.subscribe((keyword) => {
       this.keywordService.keyword = keyword;
@@ -92,47 +91,93 @@ export class TasksComponent implements OnInit {
 
   onAddTask(event: any) {
     event.preventDefault();
-    if (this.text.length == 0) {
-      alert('Please enter a task.');
-    } else {
-      this.none = 'block';
-      this.blur = '1.5px';
-      setTimeout(() => {
-        const newTask = {
-          text: this.text,
-          createdAt: new Date(),
-          isDone: false,
-        };
-        this.taskService.addTask(newTask).subscribe((task) => {
-          if (this.state != 'complete') {
+    if (this.none != 'block') {
+      this.text = this.sanitizeInputString(this.text);
+      if (this.text.length == 0) {
+        alert('Please enter a task.');
+      } else {
+        this.none = 'block';
+        this.blur = '1.5px';
+
+        setTimeout(() => {
+          const newTask = {
+            text: this.text,
+            createdAt: new Date(),
+            isDone: false,
+            completedTimeText: '',
+          };
+          this.taskService.addTask(newTask).subscribe((task) => {
             this.tasks = [task].concat(this.tasks);
-          }
-        });
-        this.text = '';
-        this.addTaskUiService.closeAddTask();
-        this.none = 'none';
-        this.blur = 0;
-        this.to = 12;
-      }, 1000);
+            this.addTaskUiService.closeAddTask();
+          });
+          this.text = '';
+          this.none = 'none';
+          this.blur = 0;
+          this.to = 12;
+        }, 500);
+      }
     }
   }
-  onUpdateTask(task: Task) {
-    this.taskService.updateTask(task).subscribe();
+  onUpdateTask(task: any) {
+    this.taskService.updateTask(task.newTask).subscribe((val) => {
+      task.task.text = task.newTask.text;
+    });
   }
 
   onCompleteTask(task: Task) {
-    if (this.state == 'incomplete') {
-      this.tasks = this.tasks.filter((t) => t.id !== task.id);
-    }
-    task.isDone = true;
-    this.taskService.updateTask(task).subscribe();
+    const newTask = Object.assign({}, task);
+    newTask.isDone = true;
+
+    this.taskService.updateTask(newTask).subscribe((val) => {
+      task.isDone = true;
+      if (this.state == 'incomplete') {
+        this.tasks = this.tasks.filter((t) => t.id !== task.id);
+      }
+    });
   }
 
   loadMore() {
     if (this.buttonName == 'Show Less') {
-      this.to = 12;
+      this.errorSuccessSpinner.isLoadingSubject.next(true);
+      setTimeout(() => {
+        this.to = 12;
+        this.errorSuccessSpinner.isLoadingSubject.next(false);
+      }, 500);
     } else {
-      this.to += 12;
+      // window.scrollTo(0, this.taskCount.nativeElement.scrollHeight);
+
+      // this.taskCount.nativeElement.scroll({
+      //   top: this.taskCount.nativeElement.scrollHeight,
+      //   behavior: 'initial',
+      // });
+
+      this.errorSuccessSpinner.isLoadingSubject.next(true);
+
+      setTimeout(() => {
+        this.errorSuccessSpinner.isLoadingSubject.next(false);
+        this.to += 12;
+      }, 500);
     }
   }
+
+  sanitizeInputString(inputString: string) {
+    inputString = inputString.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, ' ');
+    return inputString.trim();
+  }
+
+  // onNext() {
+  //   if (
+  //     this.from + 12 < this.tasks.length &&
+  //     this.to + 12 < this.tasks.length
+  //   ) {
+  //     this.from += 12;
+  //     this.to += 12;
+  //   }
+  // }
+  // onPrev() {
+  //   if (this.from - 12 > 0 && this.to - 12 > 0) {
+  //     this.from -= 12;
+  //     this.to -= 12;
+  //   }
+  // }
 }

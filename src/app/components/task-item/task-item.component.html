@@ -133,7 +133,7 @@
     <div *ngIf="!isEditing && task.isDone" class="task-item">
       <p class="complete-todo-title">{{ task.text }}</p>
       <p class="created-at-p">Created At: {{ task.createdAt | date }}</p>
-      <div class="task-button-container">
+      <div class="complete-task-button-container">
         <button
           data-title="Delete this Task"
           class="delete-button"
@@ -155,6 +155,9 @@
             />
           </svg>
         </button>
+        <div class="completed-time-text-container">
+          <p class="completed-time-text">{{ task.completedTimeText }}</p>
+        </div>
       </div>
     </div>
   </div>

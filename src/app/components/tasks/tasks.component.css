@@ -1,8 +1,13 @@
 .task-container-component {
-  display: flex;
-  margin-top: 34px;
-  flex-wrap: wrap;
+  display: grid;
+  /* border: 1px solid black; */
+  height: 620px;
   width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-gap: 3em;
+  margin-top: 34px;
 }
 
 #task-title-input {
@@ -55,14 +60,18 @@
 
 .task-item-component {
   display: flex;
-  width: calc(90% / 4);
   height: 163px;
-  margin-bottom: calc(10% / 3);
   border: 1px solid #dde2ff;
   box-sizing: border-box;
   border-radius: 5px;
 }
-
+/* .task-item-cart {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 5%;
+} */
 .task-item-cart {
   position: relative;
   display: flex;
@@ -73,13 +82,13 @@
   width: 100%;
   padding: 5%;
 }
-.task-item-component:not(:nth-child(4n)) {
+/* .task-item-component:not(:nth-child(4n)) {
   margin-right: calc(10% / 3);
 }
 
 .task-item-component:nth-child(4n) {
   margin-right: 0px;
-}
+} */
 
 .spinner-img {
   display: block;
@@ -106,5 +115,12 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+@media screen and (max-width: 600px) {
+  .task-container-component {
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    grid-gap: 2em;
+  }
 }

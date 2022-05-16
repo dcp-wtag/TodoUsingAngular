@@ -7,6 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { ErrorSuccessSpinnerService } from 'src/app/services/error-success-spinner.service';
 import { Task } from 'src/app/Task';
 
 @Component({
@@ -17,7 +18,7 @@ import { Task } from 'src/app/Task';
 export class TaskItemComponent implements AfterViewInit {
   @Input() task!: Task;
   @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
-  @Output() onUpdateTask: EventEmitter<Task> = new EventEmitter();
+  @Output() onUpdateTask: EventEmitter<any> = new EventEmitter();
   @Output() onCompleteTask: EventEmitter<Task> = new EventEmitter();
 
   @ViewChild('cart') cartElement!: ElementRef;
@@ -36,12 +37,19 @@ export class TaskItemComponent implements AfterViewInit {
   val: any = 0;
 
   isEditing: boolean = false;
+  completedTimeInDays!: number;
 
-  constructor() {}
+  constructor(private errorSuccessSpinnerService: ErrorSuccessSpinnerService) {}
 
   ngAfterViewInit(): void {}
 
   onDelete(task: Task) {
+    this.errorSuccessSpinnerService.successTextSubject.next(
+      `'${task.text}' is deleted Successfully`
+    );
+    this.errorSuccessSpinnerService.errorTextSubject.next(
+      `Failed to delete '${task.text}'`
+    );
     this.spinnerFunction(this.onDeleteTask, task);
   }
 
@@ -51,26 +59,45 @@ export class TaskItemComponent implements AfterViewInit {
 
   onSaveEditedTask(task: Task, text: string) {
     if (text && task.text != text) {
-      task.text = text;
-      this.spinnerFunction(this.onUpdateTask, task);
+      const newTask = Object.assign({}, task);
+      newTask.text = text;
+
+      this.errorSuccessSpinnerService.successTextSubject.next(
+        `'${task.text}' is updated Successfully`
+      );
+      this.errorSuccessSpinnerService.errorTextSubject.next(
+        `Failed to update '${task.text}'`
+      );
+
+      this.spinnerFunction(this.onUpdateTask, { newTask: newTask, task: task });
     }
     this.isEditing = false;
   }
 
   onComplete(task: Task) {
+    this.errorSuccessSpinnerService.successTextSubject.next(
+      `'${task.text}' is completed Successfully`
+    );
+    this.errorSuccessSpinnerService.errorTextSubject.next(
+      `Failed to complete '${task.text}'`
+    );
+    task.completedTimeText = this.getDifference(task.createdAt);
     this.spinnerFunction(this.onCompleteTask, task);
   }
 
   onCompleteFromAddTask(task: Task, text: string) {
     if (text && task.text != text) {
-      task.text = text;
-      this.onUpdateTask.emit(task);
+      const newTask = Object.create(task);
+      newTask.text = text;
+
+      this.onUpdateTask.emit({ newTask: newTask, task: task });
+      // this.spinnerFunction(this.onUpdateTask, { newTask: newTask, task: task });
     }
     this.onComplete(task);
     this.isEditing = false;
   }
 
-  spinnerFunction(callBack: any, task: Task): void {
+  spinnerFunction(callBack: any, task: any) {
     this.disp = 'block';
     this.val = '1.5px';
     setTimeout(() => {
@@ -78,5 +105,22 @@ export class TaskItemComponent implements AfterViewInit {
       this.disp = 'none';
       this.val = 0;
     }, 500);
+  }
+
+  getDifference(createdAt: any) {
+    let completedTimeText;
+    this.completedTimeInDays = Math.floor(
+      (new Date().getTime() - new Date(createdAt).getTime()) /
+        (1000 * 3600 * 24)
+    );
+
+    if (this.completedTimeInDays < 1) {
+      completedTimeText = 'Completed in less than a day';
+    } else if (this.completedTimeInDays == 1) {
+      completedTimeText = 'Completed in a day';
+    } else {
+      completedTimeText = 'Completed in ' + this.completedTimeInDays + ' days';
+    }
+    return completedTimeText;
   }
 }

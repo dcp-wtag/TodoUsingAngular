@@ -1,17 +1,15 @@
 <div class="search-bar-component">
-  <input
-    [style.visibility]="!isPressed ? 'hidden' : 'visible'"
-    autofocus
-    type="text"
-    id="search-textarea"
-    [(ngModel)]="keyword"
-    (keyup)="keywordPressed()"
-  />
-  <button
-    data-title="Search any Task"
-    class="search-button"
-    (click)="onPress()"
-  >
+  <div>
+    <input
+      #searchInput
+      *ngIf="isPressed"
+      type="text"
+      id="search-textarea"
+      [(ngModel)]="keyword"
+      (keyup)="keywordPressed()"
+    />
+  </div>
+  <button class="search-button" (click)="onPress()">
     <svg
       width="24"
       height="24"

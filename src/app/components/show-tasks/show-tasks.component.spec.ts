@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { ShowTasksComponent } from './show-tasks.component';
 
 describe('ShowTasksComponent', () => {
@@ -8,9 +8,9 @@ describe('ShowTasksComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShowTasksComponent ]
-    })
-    .compileComponents();
+      imports: [RouterTestingModule],
+      declarations: [ShowTasksComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -7,7 +7,7 @@
 }
 
 .main-spinner-img {
-  display: block;
+  display: flex;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -33,12 +33,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   /* -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s; */
-  animation: fadein 1s;
+  animation: fadein 2s infinite alternate;
 }
 
 .tick-toast {
-  width: 12px;
-  height: 9.5px;
+  margin-right: 5px;
 }
 
 #tick-text {
@@ -61,5 +60,32 @@
   left: 50%;
   transform: translate(-50%, -50%);
   /* -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s; */
-  animation: fadein 1s;
+  animation: 2s;
+}
+
+.hi {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.header-container-div {
+  width: 100%;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
