@@ -55,9 +55,9 @@
       let task of tasks | search: this.keyword:state | customSlice: from:to
     "
     [task]="task"
-    (onDeleteTask)="deleteTask($event)"
+    (onDeleteTask)="deleteTask(task)"
     (onUpdateTask)="onUpdateTask($event)"
-    (onCompleteTask)="onCompleteTask($event)"
+    (onCompleteTask)="onCompleteTask(task)"
   >
   </app-task-item>
 </div>

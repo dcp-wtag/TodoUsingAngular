@@ -1,5 +1,5 @@
-import { DisableButtonService } from '../services/disable-button.service';
-import { KeywordService } from '../services/keyword.service';
+import { DisableButtonService } from '../../services/disable-button-service/disable-button.service';
+import { KeywordService } from '../../services/keyword-service/keyword.service';
 import { SearchPipe } from './search.pipe';
 
 describe('SearchPipe', () => {

@@ -7,7 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { ErrorSuccessSpinnerService } from 'src/app/services/error-success-spinner.service';
+import { ErrorSuccessSpinnerService } from 'src/app/services/error-success-spinner-service/error-success-spinner.service';
 import { Task } from 'src/app/Task';
 
 @Component({

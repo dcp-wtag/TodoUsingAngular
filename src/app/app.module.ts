@@ -12,10 +12,10 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { ShowTasksComponent } from './components/show-tasks/show-tasks.component';
 import { TaskItemComponent } from './components/task-item/task-item.component';
 import { TasksComponent } from './components/tasks/tasks.component';
-import { CustomSlicePipe } from './pipes/custom-slice.pipe';
-import { SearchPipe } from './pipes/search.pipe';
-import { HttpInterceptorService } from './services/http-interceptor.service';
-import { TaskService } from './services/task.service';
+import { CustomSlicePipe } from './pipes/custom-slice-pipe/custom-slice.pipe';
+import { SearchPipe } from './pipes/search-pipe/search.pipe';
+import { HttpInterceptorService } from './services/http-interceptor-service/http-interceptor.service';
+import { TaskService } from './services/task-service/task.service';
 
 @NgModule({
   declarations: [

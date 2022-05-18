@@ -1,11 +1,11 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { AddTaskUiService } from 'src/app/services/add-task-ui.service';
-import { EmptyTaskService } from 'src/app/services/empty-task.service';
-import { ErrorSuccessSpinnerService } from 'src/app/services/error-success-spinner.service';
-import { KeywordService } from 'src/app/services/keyword.service';
-import { LoadMoreService } from 'src/app/services/load-more.service';
+import { AddTaskUiService } from 'src/app/services/add-task-ui-service/add-task-ui.service';
+import { EmptyTaskService } from 'src/app/services/empty-task-service/empty-task.service';
+import { ErrorSuccessSpinnerService } from 'src/app/services/error-success-spinner-service/error-success-spinner.service';
+import { KeywordService } from 'src/app/services/keyword-service/keyword.service';
+import { LoadMoreService } from 'src/app/services/load-more-show-less-service/load-more.service';
 import { Task } from 'src/app/Task';
-import { TaskService } from '../../services/task.service';
+import { TaskService } from '../../services/task-service/task.service';
 
 @Component({
   selector: 'app-tasks',
@@ -140,8 +140,8 @@ export class TasksComponent implements OnInit {
     if (this.buttonName == 'Show Less') {
       this.errorSuccessSpinner.isLoadingSubject.next(true);
       setTimeout(() => {
-        this.to = 12;
         this.errorSuccessSpinner.isLoadingSubject.next(false);
+        this.to = 12;
       }, 500);
     } else {
       // window.scrollTo(0, this.taskCount.nativeElement.scrollHeight);

@@ -1,9 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DisableButtonService } from 'src/app/services/disable-button.service';
-import { ErrorSuccessSpinnerService } from 'src/app/services/error-success-spinner.service';
-import { AddTaskUiService } from '../../services/add-task-ui.service';
-import { EmptyTaskService } from '../../services/empty-task.service';
+import { ActiveLinkService } from 'src/app/services/active-link-service/active-link.service';
+import { DisableButtonService } from 'src/app/services/disable-button-service/disable-button.service';
+import { ErrorSuccessSpinnerService } from 'src/app/services/error-success-spinner-service/error-success-spinner.service';
+import { AddTaskUiService } from '../../services/add-task-ui-service/add-task-ui.service';
+import { EmptyTaskService } from '../../services/empty-task-service/empty-task.service';
 
 @Component({
   selector: 'app-body-container',
@@ -19,6 +20,7 @@ export class BodyContainerComponent {
   @ViewChild('allButton') disableAllButton!: ElementRef;
   @ViewChild('incompleteButton') disableIncompleteButton!: ElementRef;
   @ViewChild('completeButton') disableCompleteButton!: ElementRef;
+  @ViewChild('buttonContainer') buttonContainer!: ElementRef;
 
   constructor(
     private router: Router,
@@ -26,33 +28,30 @@ export class BodyContainerComponent {
     private emptyTaskService: EmptyTaskService,
     private errorSuccessSpinnerService: ErrorSuccessSpinnerService,
     private disableButtonSubject: DisableButtonService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private activeLinkService: ActiveLinkService
   ) {
     this.disableButtonSubject.disableButton.subscribe((val) => {
-      this.disableAllButton.nativeElement.disabled = val;
-      this.disableIncompleteButton.nativeElement.disabled = val;
-      this.disableCompleteButton.nativeElement.disabled = val;
+      val
+        ? this.buttonContainer.nativeElement.classList.add('disabledbutton')
+        : this.buttonContainer.nativeElement.classList.remove('disabledbutton');
     });
-    console.log(this.router.url);
-    if (this.router.url == '/all' || this.router.url == '/') {
-      setTimeout(() => {
+
+    this.activeLinkService.activeLinkSubject.subscribe((val) => {
+      if (val == 'all') {
         this.disableAllButton.nativeElement.classList.add('active');
-        this.disableIncompleteButton.nativeElement.classList.add('remove');
-        this.disableCompleteButton.nativeElement.classList.add('remove');
-      }, 0);
-    } else if (this.router.url == '/incomplete') {
-      setTimeout(() => {
+        this.disableIncompleteButton.nativeElement.classList.remove('active');
+        this.disableCompleteButton.nativeElement.classList.remove('active');
+      } else if (val == 'incomplete') {
         this.disableIncompleteButton.nativeElement.classList.add('active');
-        this.disableAllButton.nativeElement.classList.add('remove');
-        this.disableCompleteButton.nativeElement.classList.add('remove');
-      }, 0);
-    } else {
-      setTimeout(() => {
+        this.disableAllButton.nativeElement.classList.remove('active');
+        this.disableCompleteButton.nativeElement.classList.remove('active');
+      } else {
         this.disableCompleteButton.nativeElement.classList.add('active');
-        this.disableIncompleteButton.nativeElement.classList.add('remove');
-        this.disableAllButton.nativeElement.classList.add('remove');
-      }, 0);
-    }
+        this.disableIncompleteButton.nativeElement.classList.remove('active');
+        this.disableAllButton.nativeElement.classList.remove('active');
+      }
+    });
   }
 
   onCreateButtonPressed() {
@@ -63,19 +62,7 @@ export class BodyContainerComponent {
   }
 
   onFilterButtonPressed(filterName: string) {
-    if (filterName == 'all') {
-      this.disableAllButton.nativeElement.classList.add('active');
-      this.disableIncompleteButton.nativeElement.classList.remove('active');
-      this.disableCompleteButton.nativeElement.classList.remove('active');
-    } else if (filterName == 'incomplete') {
-      this.disableIncompleteButton.nativeElement.classList.add('active');
-      this.disableAllButton.nativeElement.classList.remove('active');
-      this.disableCompleteButton.nativeElement.classList.remove('active');
-    } else {
-      this.disableCompleteButton.nativeElement.classList.add('active');
-      this.disableIncompleteButton.nativeElement.classList.remove('active');
-      this.disableAllButton.nativeElement.classList.remove('active');
-    }
+    this.activeLinkService.activeLinkSubject.next(filterName);
 
     this.errorSuccessSpinnerService.successTextSubject.next(
       `${filterName} task fetched`

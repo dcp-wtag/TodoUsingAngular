@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { ErrorSuccessSpinnerService } from './services/error-success-spinner.service';
+import { ErrorSuccessSpinnerService } from './services/error-success-spinner-service/error-success-spinner.service';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +8,12 @@ import { ErrorSuccessSpinnerService } from './services/error-success-spinner.ser
 })
 export class AppComponent {
   title = 'TodoApp';
-  isSplash: boolean = false;
+  isSplash: boolean = true;
   isSuccess!: boolean;
   isError!: boolean;
   isLoading: boolean = false;
-  errorText: string = "we couldn't save your changes.";
-  successText: string = 'Changes are saved successfully.';
+  errorText: string = 'Failed';
+  successText: string = 'Successful';
 
   constructor(
     private errorSuccessSpin: ErrorSuccessSpinnerService,
@@ -22,7 +22,6 @@ export class AppComponent {
     setTimeout(() => {
       this.isSplash = false;
     }, 1000);
-
     this.errorSuccessSpin.isLoadingSubject.subscribe((val) => {
       this.isLoading = val;
     });

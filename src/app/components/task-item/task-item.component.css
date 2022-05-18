@@ -140,6 +140,8 @@
   font-size: 12px;
   line-height: 14px;
   padding: 5px;
+  font-family: "Roboto";
+  font-style: normal;
 }
 
 .completed-time-text-container {
@@ -149,4 +151,5 @@
   align-items: center;
   border-radius: 5px;
   background: #7a8dfd;
+  padding: 10px;
 }

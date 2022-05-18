@@ -16,23 +16,19 @@
       </svg>
       Create
     </button>
-    <div class="all-incomplete-complete-container">
-      <a routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-        <button
-          #allButton
-          (click)="onFilterButtonPressed('all')"
-          class="custom-button"
-        >
-          All
-        </button>
-      </a>
+    <div #buttonContainer class="all-incomplete-complete-container">
+      <button
+        #allButton
+        (click)="onFilterButtonPressed('all')"
+        class="custom-button"
+      >
+        All
+      </button>
 
       <button
         #incompleteButton
         (click)="onFilterButtonPressed('incomplete')"
         class="custom-button"
-        [routerLinkActive]="['active']"
-        [routerLinkActiveOptions]="{ exact: true }"
       >
         Incomplete
       </button>
@@ -41,8 +37,6 @@
         #completeButton
         (click)="onFilterButtonPressed('complete')"
         class="custom-button"
-        [routerLinkActive]="['active']"
-        [routerLinkActiveOptions]="{ exact: true }"
       >
         Complete
       </button>

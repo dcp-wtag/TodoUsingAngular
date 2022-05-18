@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { EmptyTaskService } from 'src/app/services/empty-task.service';
-import { KeywordService } from 'src/app/services/keyword.service';
+import { ActiveLinkService } from 'src/app/services/active-link-service/active-link.service';
+import { EmptyTaskService } from 'src/app/services/empty-task-service/empty-task.service';
+import { KeywordService } from 'src/app/services/keyword-service/keyword.service';
 
 @Component({
   selector: 'app-show-tasks',
@@ -15,12 +16,14 @@ export class ShowTasksComponent implements OnInit, AfterViewInit {
   constructor(
     private router: Router,
     private emtpyTaskService: EmptyTaskService,
-    private keywordService: KeywordService
+    private keywordService: KeywordService,
+    private activeLinkService: ActiveLinkService
   ) {}
 
   ngOnInit(): void {
     this.state = this.router.url;
     this.state = this.state.slice(1);
+    this.activeLinkService.activeLinkSubject.next(this.state);
   }
 
   ngAfterViewInit(): void {
