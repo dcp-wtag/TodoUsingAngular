@@ -1,8 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Task } from '../../model/Task';
 import { AddTaskUiService } from '../../services/add-task-ui-service/add-task-ui.service';
 import { EmptyTaskService } from '../../services/empty-task-service/empty-task.service';
 import { LoadMoreService } from '../../services/load-more-show-less-service/load-more.service';
-import { Task } from '../../Task';
 
 @Pipe({
   name: 'customSlice',

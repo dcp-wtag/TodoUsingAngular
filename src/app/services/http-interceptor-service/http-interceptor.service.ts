@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, tap, throwError } from 'rxjs';
-import { Task } from '../../Task';
+import { Task } from '../../model/Task';
 import { ErrorSuccessSpinnerService } from '../error-success-spinner-service/error-success-spinner.service';
 
 @Injectable({

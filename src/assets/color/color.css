@@ -1,0 +1,18 @@
+:root {
+  --text-color-primary: #32394b;
+  --text-color-complete: #0bc375;
+  --text-color-white: #ffffff;
+  --text-color-date: #bbbdd0;
+  --background-white: #ffffff;
+  --border-color-secondary: #dde2ff;
+  --button-background-primary: #7a8dfd;
+  --button-background-primary-hover: #4f66e9;
+  --button-background-secondary: #dde2ff;
+  --border-color-primary: #d1d8ff;
+  --button-background-secondary-hover: #e6e0e0;
+  --button-background-teritary: #32394b;
+  --background-success: #0bc475;
+  --background-failed: #e85f5f;
+  --background-grey: #f8f9ff;
+  --background-sonic-silver: #777777;
+}

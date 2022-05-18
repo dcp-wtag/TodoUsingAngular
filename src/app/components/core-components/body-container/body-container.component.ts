@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ActiveLinkService } from 'src/app/services/active-link-service/active-link.service';
 import { DisableButtonService } from 'src/app/services/disable-button-service/disable-button.service';
 import { ErrorSuccessSpinnerService } from 'src/app/services/error-success-spinner-service/error-success-spinner.service';
-import { AddTaskUiService } from '../../services/add-task-ui-service/add-task-ui.service';
-import { EmptyTaskService } from '../../services/empty-task-service/empty-task.service';
+import { AddTaskUiService } from '../../../services/add-task-ui-service/add-task-ui.service';
+import { EmptyTaskService } from '../../../services/empty-task-service/empty-task.service';
 
 @Component({
   selector: 'app-body-container',

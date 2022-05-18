@@ -7,8 +7,8 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { Task } from 'src/app/model/Task';
 import { ErrorSuccessSpinnerService } from 'src/app/services/error-success-spinner-service/error-success-spinner.service';
-import { Task } from 'src/app/Task';
 
 @Component({
   selector: 'app-task-item',

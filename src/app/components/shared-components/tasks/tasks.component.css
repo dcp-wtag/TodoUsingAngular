@@ -8,7 +8,7 @@
 
 #task-title-input {
   background: #ffffff;
-  border: 3px solid #d1d8ff;
+  border: 3px solid var(--border-color-primary);
   box-sizing: border-box;
   border-radius: 5px;
   font-weight: 500;
@@ -26,20 +26,19 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
-  color: #32394b;
+  color: var(--text-color-primary);
   border-radius: 5px;
   background: white;
-  border: 1px solid #d1d8ff;
+  border: 1px solid var(--border-color-primary);
   cursor: pointer;
 }
 .add-task-button:hover {
-  background: #e6e0e0;
+  background: var(--button-background-secondary-hover);
 }
 
 .delete-task-button {
   width: 20px;
   height: 24px;
-  color: #bbbdd0;
   background: none;
   border: none;
   padding: 0;
@@ -57,7 +56,7 @@
 .task-item-component {
   display: flex;
   height: 163px;
-  border: 1px solid #dde2ff;
+  border: 1px solid var(--button-background-secondary);
   box-sizing: border-box;
   border-radius: 5px;
 }
@@ -73,7 +72,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: #ffffff;
+  background: var(--background-white);
   border-radius: 5px;
   width: 100%;
   padding: 5%;
@@ -99,9 +98,9 @@
 .show-less-button {
   height: 36px;
   width: 117px;
-  color: white;
-  background: #32394b;
-  border: 1px solid #dde2ff;
+  color: var(--background-white);
+  background: var(--button-background-teritary);
+  border: 1px solid var(--button-background-secondary);
   border-radius: 5px;
   cursor: pointer;
   margin-bottom: 30px;

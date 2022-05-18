@@ -18,7 +18,7 @@
   font-size: 2rem;
   font-weight: 700;
   line-height: 28px;
-  color: #32394b;
+  color: var(--text-color-primary);
   margin-top: 25px;
   text-align: center;
 }

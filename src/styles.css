@@ -1,3 +1,5 @@
+@import url("./assets/color/color.css");
+
 *,
 *::after,
 *::before {
@@ -6,7 +8,7 @@
   box-sizing: border-box;
 }
 body {
-  background: #f8f9ff;
+  background: var(--background-grey);
   font-family: "Roboto", sans-serif;
   font-style: normal;
 }
@@ -25,8 +27,8 @@ body {
   z-index: 99999;
   visibility: hidden;
   white-space: nowrap;
-  background-color: #777777;
-  color: #ffffff;
+  background-color: var(--background-sonic-silver);
+  color: var(--text-color-white);
   font-size: 15px;
   padding: 3px 5px 4px 5px;
   border-radius: 5px;

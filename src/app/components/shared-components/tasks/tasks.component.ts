@@ -1,11 +1,11 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Task } from 'src/app/model/Task';
 import { AddTaskUiService } from 'src/app/services/add-task-ui-service/add-task-ui.service';
 import { EmptyTaskService } from 'src/app/services/empty-task-service/empty-task.service';
 import { ErrorSuccessSpinnerService } from 'src/app/services/error-success-spinner-service/error-success-spinner.service';
 import { KeywordService } from 'src/app/services/keyword-service/keyword.service';
 import { LoadMoreService } from 'src/app/services/load-more-show-less-service/load-more.service';
-import { Task } from 'src/app/Task';
-import { TaskService } from '../../services/task-service/task.service';
+import { TaskService } from '../../../services/task-service/task.service';
 
 @Component({
   selector: 'app-tasks',

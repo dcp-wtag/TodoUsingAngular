@@ -1,5 +1,6 @@
 #preloader {
-  background: #f8f9ff url("../assets/images/splash.png") no-repeat center center;
+  background: var(--background-white) url("../assets/images/splash.png")
+    no-repeat center center;
   height: 100vh;
   width: 100%;
   position: fixed;
@@ -44,14 +45,14 @@
   font-size: 18px;
   line-height: 21px;
   font-weight: 700;
-  color: white;
+  color: var(--text-color-white);
 }
 
 #toast-unsuccess {
   width: 364px;
   height: 55px;
   border-radius: 5px;
-  background: #e85f5f;
+  background: var(--background-failed);
   position: absolute;
   display: flex;
   justify-content: center;

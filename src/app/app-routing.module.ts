@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ShowTasksComponent } from './components/show-tasks/show-tasks.component';
+import { ShowTasksComponent } from './components/shared-components/show-tasks/show-tasks.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/all', pathMatch: 'full' },

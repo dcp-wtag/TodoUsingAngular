@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ErrorSuccessSpinnerService } from 'src/app/services/error-success-spinner-service/error-success-spinner.service';
-import { KeywordService } from '../../services/keyword-service/keyword.service';
+import { KeywordService } from '../../../services/keyword-service/keyword.service';
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',

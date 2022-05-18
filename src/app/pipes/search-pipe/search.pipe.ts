@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Task } from '../../model/Task';
 import { DisableButtonService } from '../../services/disable-button-service/disable-button.service';
 import { KeywordService } from '../../services/keyword-service/keyword.service';
-import { Task } from '../../Task';
 
 @Pipe({
   name: 'search',

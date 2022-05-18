@@ -9,16 +9,16 @@
   height: 36px;
   width: 518px;
   border-radius: 5px;
-  background: white;
+  background: var(--background-white);
   box-sizing: border-box;
   resize: none;
   padding: 5px;
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
-  color: #32394b;
+  color: var(--text-color-primary);
   outline: none;
-  border: 3px solid #d1d8ff;
+  border: 3px solid var(--border-color-primary);
 }
 
 .search-button {
