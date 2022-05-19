@@ -1,6 +1,6 @@
 <div class="container__task" #taskCount>
   <div *ngIf="showAddTask" class="container__task-item">
-    <div class="task-item" [ngStyle]="{ filter: 'blur(' + blur + ')' }">
+    <div class="task-item" [class.task-item__blur]="isShowSpinBlur">
       <textarea
         #textArea
         class="task-item__title"
@@ -40,13 +40,17 @@
           </svg>
         </button>
       </div>
-      <img
-        class="task__spinner-image"
-        [style.display]="none"
-        src="../../../assets/images/spinner.png"
-        alt="spinner"
-      />
     </div>
+    <img
+      class="task__spinner-image"
+      [class]="
+        isShowSpinBlur
+          ? 'task__spinner-image--show'
+          : 'task__spinner-image--hide'
+      "
+      src="../../../assets/images/spinner.png"
+      alt="spinner"
+    />
   </div>
 
   <app-task-item

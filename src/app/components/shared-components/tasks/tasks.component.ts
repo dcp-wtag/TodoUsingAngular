@@ -23,7 +23,7 @@ export class TasksComponent implements OnInit {
   }
 
   showAddTask!: boolean;
-
+  isShowSpinBlur: boolean = false;
   tasks: Task[] = [];
   text: string = '';
   isDone: boolean = false;
@@ -31,8 +31,6 @@ export class TasksComponent implements OnInit {
   keyword: string = this.keywordService.keyword;
   from: number = 0;
   to: number = 12;
-  none: string = 'none';
-  blur: any = 0;
   isLoadMoreShow: boolean = false;
   isShowLessShow: boolean = false;
 
@@ -90,13 +88,19 @@ export class TasksComponent implements OnInit {
 
   onAddTask(event: any) {
     event.preventDefault();
-    if (this.none != 'block') {
+    if (!this.isShowSpinBlur) {
       this.text = this.sanitizeInputString(this.text);
       if (this.text.length == 0) {
         alert('Please enter a task.');
       } else {
-        this.none = 'block';
-        this.blur = '1.5px';
+        this.errorSuccessSpinner.successTextSubject.next(
+          `'${this.text}' is added Successfully`
+        );
+        this.errorSuccessSpinner.errorTextSubject.next(
+          `Failed to add '${this.text}'`
+        );
+
+        this.isShowSpinBlur = true;
 
         setTimeout(() => {
           const newTask = {
@@ -108,11 +112,11 @@ export class TasksComponent implements OnInit {
           this.taskService.addTask(newTask).subscribe((task) => {
             this.addTaskUiService.closeAddTask();
             this.to = 12;
+            this.text = '';
             this.tasks = [task].concat(this.tasks);
           });
-          this.text = '';
-          this.none = 'none';
-          this.blur = 0;
+
+          this.isShowSpinBlur = false;
         }, 500);
       }
     }

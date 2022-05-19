@@ -33,9 +33,7 @@ export class TaskItemComponent implements AfterViewInit {
     }
   }
 
-  disp: string = 'none';
-  val: any = 0;
-
+  isShowSpinBlur: boolean = false;
   isEditing: boolean = false;
   completedTimeInDays!: number;
 
@@ -98,12 +96,10 @@ export class TaskItemComponent implements AfterViewInit {
   }
 
   spinnerFunction(callBack: any, task: any) {
-    this.disp = 'block';
-    this.val = '1.5px';
+    this.isShowSpinBlur = true;
     setTimeout(() => {
       callBack.emit(task);
-      this.disp = 'none';
-      this.val = 0;
+      this.isShowSpinBlur = false;
     }, 500);
   }
 

@@ -54,21 +54,15 @@
 }
 
 .container__task-item {
+  position: relative;
   display: flex;
   height: 163px;
   border: 1px solid var(--button-background-secondary);
   box-sizing: border-box;
   border-radius: 5px;
 }
-/* .task-item-cart {
-  position: relative;
-  width: 100%;
-  background: #ffffff;
-  border-radius: 5px;
-  padding: 5%;
-} */
+
 .task-item {
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -77,16 +71,8 @@
   width: 100%;
   padding: 5%;
 }
-/* .task-item-component:not(:nth-child(4n)) {
-  margin-right: calc(10% / 3);
-}
-
-.task-item-component:nth-child(4n) {
-  margin-right: 0px;
-} */
 
 .task__spinner-image {
-  display: block;
   position: absolute;
   top: 50%;
   left: 50%;

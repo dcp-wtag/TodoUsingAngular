@@ -50,3 +50,15 @@ body {
 ::-webkit-scrollbar {
   width: 0%;
 }
+
+.task-item__blur {
+  filter: blur(1.5px);
+}
+
+.task__spinner-image--show {
+  display: block;
+}
+
+.task__spinner-image--hide {
+  display: none;
+}

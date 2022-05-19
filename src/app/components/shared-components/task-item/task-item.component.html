@@ -1,5 +1,5 @@
 <div class="container__task">
-  <div class="container__task-item" [ngStyle]="{ filter: 'blur(' + val + ')' }">
+  <div class="container__task-item" [class.task-item__blur]="isShowSpinBlur">
     <!-- Editing Cart -->
 
     <div *ngIf="isEditing" class="task-item">
@@ -166,8 +166,10 @@
     </div>
   </div>
   <img
-    [style.display]="disp"
     class="task__spinner-image"
+    [class]="
+      isShowSpinBlur ? 'task__spinner-image--show' : 'task__spinner-image--hide'
+    "
     src="../../../assets/images/spinner.png"
     alt="spinner"
   />
