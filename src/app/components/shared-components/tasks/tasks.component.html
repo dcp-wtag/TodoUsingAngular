@@ -1,26 +1,26 @@
-<div class="task-container-component" #taskCount>
-  <div *ngIf="showAddTask" class="task-item-component">
-    <div [ngStyle]="{ filter: 'blur(' + blur + ')' }" class="task-item-cart">
+<div class="container__task" #taskCount>
+  <div *ngIf="showAddTask" class="container__task-item">
+    <div class="task-item" [ngStyle]="{ filter: 'blur(' + blur + ')' }">
       <textarea
         #textArea
+        class="task-item__title"
         placeholder="Enter your Task..."
         name=""
-        id="task-title-input"
         cols="30"
         rows="10"
         [(ngModel)]="text"
         (keydown.enter)="onAddTask($event)"
       ></textarea>
-      <div class="add-button-container">
+      <div class="task-item__button">
         <input
+          class="task-item__button--add"
           (click)="onAddTask($event)"
-          class="add-task-button"
           type="button"
           value="Add Task"
         />
         <button
+          class="task-item__button--delete"
           data-title="Delete this Task"
-          class="delete-task-button"
           (click)="onDelete()"
         >
           <svg
@@ -41,8 +41,8 @@
         </button>
       </div>
       <img
+        class="task__spinner-image"
         [style.display]="none"
-        class="spinner-img"
         src="../../../assets/images/spinner.png"
         alt="spinner"
       />
@@ -50,7 +50,7 @@
   </div>
 
   <app-task-item
-    class="task-item-component"
+    class="container__task-item"
     *ngFor="
       let task of tasks | search: this.keyword:state | customSlice: from:to
     "
@@ -61,10 +61,11 @@
   >
   </app-task-item>
 </div>
-<div class="load-more-div" *ngIf="isLoadMoreShow">
-  <!-- <button class="load-more-button" (click)="onPrev()">Prev</button> -->
-  <button class="load-more-button" (click)="loadMore()">
-    {{ buttonName }}
-  </button>
-  <!-- <button class="load-more-button" (click)="onNext()">Next</button> -->
+<div #container__footer class="container__footer">
+  <div *ngIf="isShowLessShow" class="footer__show-less">
+    <button class="footer__button" (click)="showLess()">Show Less</button>
+  </div>
+  <div *ngIf="isLoadMoreShow" class="footer__load-more">
+    <button class="footer__button" (click)="loadMore()">Load More</button>
+  </div>
 </div>

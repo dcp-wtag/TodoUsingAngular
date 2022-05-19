@@ -1,11 +1,11 @@
-.search-bar-component {
+.head__search-bar {
   display: flex;
   align-items: center;
   /* width: 550px; */
   justify-content: space-between;
 }
 
-#search-textarea {
+.search-bar__input {
   height: 36px;
   width: 518px;
   border-radius: 5px;
@@ -21,7 +21,7 @@
   border: 3px solid var(--border-color-primary);
 }
 
-.search-button {
+.search-bar__button {
   margin-left: 5px;
   background: none;
   border: none;
@@ -30,19 +30,19 @@
 }
 
 @media screen and (max-width: 992px) {
-  #search-textarea {
+  .search-bar__input {
     width: 300px;
   }
 }
 
 @media screen and (max-width: 600px) {
-  #search-textarea {
+  .search-bar__input {
     width: 200px;
   }
 }
 
 @media screen and (max-width: 400px) {
-  #search-textarea {
+  .search-bar__input {
     width: 100px;
   }
 }

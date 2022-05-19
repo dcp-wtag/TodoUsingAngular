@@ -1,4 +1,9 @@
-.logo-title-component {
+.head__logo {
   display: flex;
   width: 140px;
+}
+.logo {
+  display: flex;
+  width: 100%;
+  justify-content: "space-between";
 }

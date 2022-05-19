@@ -1,4 +1,4 @@
-.task-container-component {
+.container__task {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -6,7 +6,7 @@
   margin-top: 34px;
 }
 
-#task-title-input {
+.task-item__title {
   background: #ffffff;
   border: 3px solid var(--border-color-primary);
   box-sizing: border-box;
@@ -20,7 +20,7 @@
   outline: none;
 }
 
-.add-task-button {
+.task-item__button--add {
   width: 91px;
   height: 36px;
   font-weight: 500;
@@ -32,11 +32,11 @@
   border: 1px solid var(--border-color-primary);
   cursor: pointer;
 }
-.add-task-button:hover {
+.task-item__button--add:hover {
   background: var(--button-background-secondary-hover);
 }
 
-.delete-task-button {
+.task-item__button--delete {
   width: 20px;
   height: 24px;
   background: none;
@@ -45,7 +45,7 @@
   cursor: pointer;
 }
 
-.add-button-container {
+.task-item__button {
   display: flex;
   width: 35%;
   justify-content: space-between;
@@ -53,7 +53,7 @@
   height: 35px;
 }
 
-.task-item-component {
+.container__task-item {
   display: flex;
   height: 163px;
   border: 1px solid var(--button-background-secondary);
@@ -67,7 +67,7 @@
   border-radius: 5px;
   padding: 5%;
 } */
-.task-item-cart {
+.task-item {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -85,7 +85,7 @@
   margin-right: 0px;
 } */
 
-.spinner-img {
+.task__spinner-image {
   display: block;
   position: absolute;
   top: 50%;
@@ -94,8 +94,7 @@
   animation: rotation 2s infinite linear;
 }
 
-.load-more-button,
-.show-less-button {
+.footer__button {
   height: 36px;
   width: 117px;
   color: var(--background-white);
@@ -106,8 +105,7 @@
   margin-bottom: 30px;
 }
 
-.load-more-div,
-.show-less-div {
+.container__footer {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -115,7 +113,7 @@
 }
 
 @media screen and (max-width: 600px) {
-  .task-container-component {
+  .container__task {
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     grid-gap: 2em;
   }

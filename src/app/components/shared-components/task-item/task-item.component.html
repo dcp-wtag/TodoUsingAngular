@@ -1,28 +1,28 @@
-<div class="task-item-cart">
-  <div class="task-item-container" [ngStyle]="{ filter: 'blur(' + val + ')' }">
+<div class="container__task">
+  <div class="container__task-item" [ngStyle]="{ filter: 'blur(' + val + ')' }">
     <!-- Editing Cart -->
 
     <div *ngIf="isEditing" class="task-item">
       <textarea
         #myTextArea
+        class="task-item__input"
         placeholder="Enter your Task..."
         name=""
-        id="task-title-input"
         cols="30"
         rows="10"
         (keydown.enter)="onSaveEditedTask(task, myTextArea.value)"
         >{{ task.text }}</textarea
       >
-      <div class="add-button-container">
+      <div class="task-item__button-edit">
         <input
-          (click)="onSaveEditedTask(task, myTextArea.value)"
-          class="add-task-button"
+          class="task-item__button--save"
           type="button"
           value="Save"
+          (click)="onSaveEditedTask(task, myTextArea.value)"
         />
         <button
+          class="task-item__button--complete"
           data-title="Complete this Task"
-          class="complete-button"
           (click)="onCompleteFromAddTask(task, myTextArea.value)"
         >
           <svg
@@ -39,8 +39,8 @@
           </svg>
         </button>
         <button
+          class="task-item__button--delete"
           data-title="Delete this Task"
-          class="delete-task-button"
           (click)="onDelete(task)"
         >
           <svg
@@ -65,13 +65,15 @@
     <!-- Incomplete Cart -->
 
     <div *ngIf="!isEditing && !task.isDone" class="task-item">
-      <p class="incomplete-todo-title">{{ task.text }}</p>
-      <p class="created-at-p">Created At: {{ task.createdAt | date }}</p>
-      <div class="task-button-container">
+      <p class="task-item__title--incomplete">{{ task.text }}</p>
+      <p class="task-item__created-at">
+        Created At: {{ task.createdAt | date }}
+      </p>
+      <div class="task-item__button-incomplete">
         <button
+          class="task-item__button--complete"
           (click)="onComplete(task)"
           data-title="Complete this Task"
-          class="complete-button"
         >
           <svg
             width="24"
@@ -87,9 +89,9 @@
           </svg>
         </button>
         <button
+          class="task-item__button--edit"
           (click)="onEdit(task)"
           data-title="Edit this Task"
-          class="edit-button"
         >
           <svg
             width="24"
@@ -105,8 +107,8 @@
           </svg>
         </button>
         <button
+          class="task-item__button--delete"
           data-title="Delete this Task"
-          class="delete-button"
           (click)="onDelete(task)"
         >
           <svg
@@ -131,12 +133,14 @@
     <!-- Complete Cart -->
 
     <div *ngIf="!isEditing && task.isDone" class="task-item">
-      <p class="complete-todo-title">{{ task.text }}</p>
-      <p class="created-at-p">Created At: {{ task.createdAt | date }}</p>
-      <div class="complete-task-button-container">
+      <p class="task-item__title--complete">{{ task.text }}</p>
+      <p class="task-item__created-at">
+        Created At: {{ task.createdAt | date }}
+      </p>
+      <div class="task-item__button-complete">
         <button
+          class="task-item__button--delete"
           data-title="Delete this Task"
-          class="delete-button"
           (click)="onDelete(task)"
         >
           <svg
@@ -155,15 +159,15 @@
             />
           </svg>
         </button>
-        <div class="completed-time-text-container">
-          <p class="completed-time-text">{{ task.completedTimeText }}</p>
+        <div class="task-item__completed-in">
+          <p class="completed-in__title">{{ task.completedTimeText }}</p>
         </div>
       </div>
     </div>
   </div>
   <img
     [style.display]="disp"
-    class="spinner-img"
+    class="task__spinner-image"
     src="../../../assets/images/spinner.png"
     alt="spinner"
   />

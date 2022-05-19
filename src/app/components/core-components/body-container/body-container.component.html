@@ -1,7 +1,7 @@
-<div class="body-container-component">
-  <p id="add-task-title">Add Tasks</p>
-  <div class="button-container">
-    <button class="create-button" (click)="onCreateButtonPressed()">
+<div class="container__body">
+  <p class="body__title">Add Tasks</p>
+  <div class="container__button">
+    <button class="button--create" (click)="onCreateButtonPressed()">
       <svg
         width="16"
         height="16"
@@ -16,27 +16,27 @@
       </svg>
       Create
     </button>
-    <div #buttonContainer class="all-incomplete-complete-container">
+    <div #buttonContainer class="container__button--filter">
       <button
         #allButton
+        class="button__filter"
         (click)="onFilterButtonPressed('all')"
-        class="custom-button"
       >
         All
       </button>
 
       <button
         #incompleteButton
+        class="button__filter"
         (click)="onFilterButtonPressed('incomplete')"
-        class="custom-button"
       >
         Incomplete
       </button>
 
       <button
         #completeButton
+        class="button__filter"
         (click)="onFilterButtonPressed('complete')"
-        class="custom-button"
       >
         Complete
       </button>

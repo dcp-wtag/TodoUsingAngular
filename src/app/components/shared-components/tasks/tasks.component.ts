@@ -16,7 +16,6 @@ export class TasksComponent implements OnInit {
   @Input() state!: string;
   @ViewChild('taskCount') taskCount!: ElementRef;
   @ViewChild('task-item-component') scrollToBottom!: ElementRef;
-
   @ViewChild('textArea') set myTextArea(ref: ElementRef) {
     if (!!ref) {
       ref.nativeElement.focus();
@@ -35,7 +34,7 @@ export class TasksComponent implements OnInit {
   none: string = 'none';
   blur: any = 0;
   isLoadMoreShow: boolean = false;
-  buttonName: string = 'Load More';
+  isShowLessShow: boolean = false;
 
   constructor(
     private taskService: TaskService,
@@ -65,12 +64,12 @@ export class TasksComponent implements OnInit {
       this.to = 12;
     });
 
-    this.loadMoreService.subject.subscribe((val) => {
+    this.loadMoreService.loadMoreSubject.subscribe((val) => {
       this.isLoadMoreShow = val;
     });
 
-    this.loadMoreService.buttonName.subscribe((val) => {
-      this.buttonName = val;
+    this.loadMoreService.showLessSubject.subscribe((val) => {
+      this.isShowLessShow = val;
     });
   }
 
@@ -107,13 +106,13 @@ export class TasksComponent implements OnInit {
             completedTimeText: '',
           };
           this.taskService.addTask(newTask).subscribe((task) => {
-            this.tasks = [task].concat(this.tasks);
             this.addTaskUiService.closeAddTask();
+            this.to = 12;
+            this.tasks = [task].concat(this.tasks);
           });
           this.text = '';
           this.none = 'none';
           this.blur = 0;
-          this.to = 12;
         }, 500);
       }
     }
@@ -137,47 +136,23 @@ export class TasksComponent implements OnInit {
   }
 
   loadMore() {
-    if (this.buttonName == 'Show Less') {
-      this.errorSuccessSpinner.isLoadingSubject.next(true);
-      setTimeout(() => {
-        this.errorSuccessSpinner.isLoadingSubject.next(false);
-        this.to = 12;
-      }, 500);
-    } else {
-      // window.scrollTo(0, this.taskCount.nativeElement.scrollHeight);
+    this.errorSuccessSpinner.isLoadingSubject.next(true);
+    setTimeout(() => {
+      this.errorSuccessSpinner.isLoadingSubject.next(false);
+      this.to += 12;
+    }, 500);
+  }
 
-      // this.taskCount.nativeElement.scroll({
-      //   top: this.taskCount.nativeElement.scrollHeight,
-      //   behavior: 'initial',
-      // });
-
-      this.errorSuccessSpinner.isLoadingSubject.next(true);
-
-      setTimeout(() => {
-        this.errorSuccessSpinner.isLoadingSubject.next(false);
-        this.to += 12;
-      }, 500);
-    }
+  showLess() {
+    this.errorSuccessSpinner.isLoadingSubject.next(true);
+    setTimeout(() => {
+      this.errorSuccessSpinner.isLoadingSubject.next(false);
+      this.to = 12;
+    }, 500);
   }
 
   sanitizeInputString(inputString: string) {
     inputString = inputString.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, ' ');
     return inputString.trim();
   }
-
-  // onNext() {
-  //   if (
-  //     this.from + 12 < this.tasks.length &&
-  //     this.to + 12 < this.tasks.length
-  //   ) {
-  //     this.from += 12;
-  //     this.to += 12;
-  //   }
-  // }
-  // onPrev() {
-  //   if (this.from - 12 > 0 && this.to - 12 > 0) {
-  //     this.from -= 12;
-  //     this.to -= 12;
-  //   }
-  // }
 }

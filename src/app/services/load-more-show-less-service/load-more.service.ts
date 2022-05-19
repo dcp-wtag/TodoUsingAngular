@@ -5,6 +5,6 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class LoadMoreService {
-  subject = new Subject<boolean>();
-  buttonName = new Subject<string>();
+  loadMoreSubject = new Subject<boolean>();
+  showLessSubject = new Subject<boolean>();
 }

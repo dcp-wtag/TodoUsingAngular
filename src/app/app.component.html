@@ -1,16 +1,20 @@
-<div *ngIf="isSplash" id="preloader"></div>
-<div *ngIf="isSuccess" id="toast">
-  <img class="tick-toast" src="../assets/images/tick_mark.svg" alt="" />
-  <p id="tick-text">{{ successText }}</p>
+<div *ngIf="isSplash" class="root__splash-screen">
+  <img class="splash__image" src="../assets/images/splash.png" alt="" />
 </div>
-<div *ngIf="isError" id="toast-unsuccess">
-  <p id="tick-text">{{ errorText }}</p>
+<div class="root__toast">
+  <div *ngIf="isSuccess" class="root__toast--success">
+    <img class="toast__image" src="../assets/images/tick_mark.svg" alt="" />
+    <p class="toast__title">{{ successText }}</p>
+  </div>
+  <div *ngIf="isError" class="root__toast--unsuccess">
+    <p class="toast__title">{{ errorText }}</p>
+  </div>
 </div>
-<app-header class="header-container-div"></app-header>
-<div [class.hi]="isLoading">
+<app-header class="root__header"></app-header>
+<div [class.root__blur]="isLoading">
   <app-body-container></app-body-container>
   <router-outlet *ngIf="!isSplash"></router-outlet>
 </div>
-<div *ngIf="isLoading" id="main-spinner">
-  <img class="main-spinner-img" src="../assets/images/spinner.png" alt="" />
+<div *ngIf="isLoading" class="root__spinner">
+  <img class="spinner__image" src="../assets/images/spinner.png" alt="" />
 </div>

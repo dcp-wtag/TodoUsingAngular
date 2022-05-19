@@ -1,13 +1,20 @@
-#preloader {
-  background: var(--background-white) url("../assets/images/splash.png")
-    no-repeat center center;
-  height: 100vh;
+.root__splash-screen {
+  background: var(--background-white);
+  height: 100%;
   width: 100%;
   position: fixed;
   z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.main-spinner-img {
+.splash__image {
+  width: 400px;
+  height: auto;
+}
+
+.spinner__image {
   display: flex;
   position: absolute;
   left: 50%;
@@ -16,12 +23,12 @@
   animation: rotation 2s infinite linear;
 }
 
-#main-spinner {
+.root__spinner {
   width: 100%;
   height: 100%;
 }
 
-#toast {
+.root__toast--success {
   width: 390px;
   height: 55px;
   border-radius: 5px;
@@ -37,18 +44,18 @@
   animation: fadein 2s infinite alternate;
 }
 
-.tick-toast {
+.toast__image {
   margin-right: 5px;
 }
 
-#tick-text {
+.toast__title {
   font-size: 18px;
   line-height: 21px;
   font-weight: 700;
   color: var(--text-color-white);
 }
 
-#toast-unsuccess {
+.root__toast--unsuccess {
   width: 364px;
   height: 55px;
   border-radius: 5px;
@@ -64,12 +71,12 @@
   animation: 2s;
 }
 
-.hi {
+.root__blur {
   opacity: 0.5;
   pointer-events: none;
 }
 
-.header-container-div {
+.root__header {
   width: 100%;
 }
 
@@ -88,5 +95,23 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .splash__image {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .splash__image {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .splash__image {
+    width: 200px;
   }
 }

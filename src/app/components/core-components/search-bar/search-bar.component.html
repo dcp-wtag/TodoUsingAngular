@@ -1,15 +1,20 @@
-<div class="search-bar-component">
+<div class="head__search-bar">
   <div>
     <input
       #searchInput
+      class="search-bar__input"
       *ngIf="isPressed"
       type="text"
-      id="search-textarea"
       [(ngModel)]="keyword"
       (keyup)="keywordPressed()"
+      placeholder="Enter keyword..."
     />
   </div>
-  <button class="search-button" (click)="onPress()" data-title="Search Task">
+  <button
+    class="search-bar__button"
+    (click)="onPress()"
+    data-title="Search Task"
+  >
     <svg
       width="24"
       height="24"

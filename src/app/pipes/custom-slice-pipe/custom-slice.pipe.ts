@@ -15,13 +15,12 @@ export class CustomSlicePipe implements PipeTransform {
   ) {}
   transform(value: Task[], from: number, to: number): any {
     if (value.length > to) {
-      this.loadMoreService.buttonName.next('Load More');
-      this.loadMoreService.subject.next(true);
+      this.loadMoreService.loadMoreSubject.next(true);
+      this.loadMoreService.showLessSubject.next(false);
     } else {
       if (to > 12) {
-        this.loadMoreService.buttonName.next('Show Less');
-      } else {
-        this.loadMoreService.subject.next(false);
+        this.loadMoreService.loadMoreSubject.next(false);
+        this.loadMoreService.showLessSubject.next(true);
       }
     }
     if (value.length === 0 && !this.showAddTaskService.showAddTask) {

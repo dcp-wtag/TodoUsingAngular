@@ -1,4 +1,4 @@
-<div *ngIf="isShowEmptyTaskCart" class="empty-task">
+<div *ngIf="isShowEmptyTaskCart" class="container__empty-task">
   <svg
     width="237"
     height="213"
@@ -104,6 +104,6 @@
     />
   </svg>
 
-  <p class="empty-head">{{ this.emptyTitle }}</p>
+  <p class="empty-task__title">{{ this.emptyTitle }}</p>
 </div>
-<app-tasks [state]="state" class="task-container"></app-tasks>
+<app-tasks [state]="state" class="container__task"></app-tasks>
